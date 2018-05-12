@@ -180,19 +180,19 @@
   }]);
 
   /**
-   * @name: userDataManagement
-   * @author: Jose Gimenez & Hector Garcia
+   * @name: userRegister
+   * @author: Jose Gimenez
    * @version: 3.1
    * @description: that directove controlls "user-data-management" template
    * @date: 17/05/2017
    * @return none
    */
-  angular.module('infoTechApp').directive("userDataManagement", function() {
+  angular.module('infoTechApp').directive("userRegister", function() {
     return {
       restrict: 'E',
-      templateUrl: "view/templates/user-data-management.html",
+      templateUrl: "view/templates/user-register.html",
       controller: function() {},
-      controllerAs: 'userDataManagement'
+      controllerAs: 'userRegister'
     };
   });
 
