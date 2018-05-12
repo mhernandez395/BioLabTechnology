@@ -41,7 +41,7 @@ INSERT INTO `users` (`id`, `name`, `surname1`, `nick`, `password`, `userType`,`a
 
 
 CREATE USER IF NOT EXISTS 'biolab'@'localhost' IDENTIFIED BY 'biolab';
-GRANT ALL ON infotech.* TO 'biolab'@'localhost';
-GRANT ALL ON infotech TO 'biolab'@'localhost';
-GRANT CREATE ON infotech TO 'biolab'@'localhost';
+GRANT ALL ON biolab.* TO 'biolab'@'localhost';
+GRANT ALL ON biolab TO 'biolab'@'localhost';
+GRANT CREATE ON biolab TO 'biolab'@'localhost';
 FLUSH PRIVILEGES;
