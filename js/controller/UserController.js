@@ -24,6 +24,7 @@
     }
 
     //$scope.userType = $scope.user.getUserType();
+    $scope.usersArray = new Array();
     $scope.passwordValid = true;
     $scope.nickValid = true;
     $scope.userImage;
@@ -123,6 +124,50 @@
     };
 
     /**
+        * @name: loadUsers
+        * @author: Jose Gimenez & Hector Garcia
+        * @version: 3.1
+        * @description: load all users existing in a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+        this.loadUsers = function () {
+            //$scope.reviewsModArray = [];
+            $scope.filteredData = [];
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10040
+                , jsonData: JSON.stringify("")
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    for (var i = 0; i < outPutData[1].length; i++) {
+                        var user = new User();
+                        user.construct(outPutData[1][i].id, outPutData[1][i].name, outPutData[1][i].surname1, outPutData[1][i].nick, outPutData[1][i].password, outPutData[1][i].userType, outPutData[1][i].address, outPutData[1][i].city, outPutData[1][i].state, outPutData[1][i].telephone, outPutData[1][i].mail, outPutData[1][i].birthDate, outPutData[1][i].entryDate, outPutData[1][i].dropOutDate, outPutData[1][i].active, outPutData[1][i].image);
+                        $scope.usersArray.push(user);
+                    }
+                    /*
+                    for (var i = 0; i < $scope.reviewsArray.length; i++) {
+                        for (var j = 0; j < $scope.usersArray.length; j++) {
+                            if ($scope.usersArray[j].id == $scope.reviewsArray[i].userId) {
+                                $scope.reviewsArray[i].userId = $scope.usersArray[j];
+                                $scope.userEmails.push($scope.usersArray[i].mail);
+                            }
+                        }
+                    }*/
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
+
+    /**
      * @name: connection
      * @author: Jose Gimenez & Hector Garcia
      * @version: 3.1
@@ -193,6 +238,23 @@
       templateUrl: "view/templates/user-register.html",
       controller: function() {},
       controllerAs: 'userRegister'
+    };
+  });
+
+  /**
+   * @name: userManagament
+   * @author: Marvin Hernandez
+   * @version: 3.1
+   * @description: that directove controlls "user-management" template
+   * @date: 17/05/2017
+   * @return none
+   */
+  angular.module('infoTechApp').directive("userManagament", function() {
+    return {
+      restrict: 'E',
+      templateUrl: "view/templates/user-managament.html",
+      controller: function() {},
+      controllerAs: 'userManagament'
     };
   });
 
