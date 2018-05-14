@@ -136,6 +136,7 @@
         */
         this.loadUsers = function () {
             //$scope.reviewsModArray = [];
+             $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
                 controllerType: 0
@@ -144,6 +145,7 @@
             });
             promise.then(function (outPutData) {
                 if (outPutData[0] === true) {
+                  console.log(outPutData);
                     for (var i = 0; i < outPutData[1].length; i++) {
                         var user = new User();
                         user.construct(outPutData[1][i].id, outPutData[1][i].name, outPutData[1][i].surname1, outPutData[1][i].nick, outPutData[1][i].password, outPutData[1][i].userType, outPutData[1][i].address, outPutData[1][i].city, outPutData[1][i].state, outPutData[1][i].telephone, outPutData[1][i].mail, outPutData[1][i].birthDate, outPutData[1][i].entryDate, outPutData[1][i].dropOutDate, outPutData[1][i].active, outPutData[1][i].image);
