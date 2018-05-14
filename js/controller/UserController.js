@@ -7,9 +7,12 @@
  */
 //Angular code
 (function() {
-  angular.module('infoTechApp').controller("UserController", ['$http', '$scope', '$window', '$cookies', 'accessService', 'userConnected', function($http, $scope, $window, $cookies, accessService, userConnected) {
+  angular.module('infoTechApp').controller("UserController", ['$http', '$scope', '$window', '$cookies', 'accessService', 'userConnected', '$filter', function($http, $scope, $window, $cookies, accessService, userConnected,$filter) {
     //scope variables
     $scope.userOption = 0;
+     //Pagination variables
+        $scope.pageSize = 4;
+        $scope.currentPage = 1;
     //$scope.userType;
     $scope.user = new User();
     if (typeof(Storage) == "undefined") {
@@ -166,6 +169,20 @@
                 }
             });
         };
+        /**
+        * @name: modifyReview
+        * @author: Jose Gimenez & Hector Garcia
+        * @version: 3.1
+        * @description: allows to search in pagination usin reviews fields. It filter by opinion and rate.
+        * @date: 17/05/2017
+        * @return: none
+        */
+        $scope.$watch("NameSearch+Surname1Search", function () {
+            $scope.filteredData = $filter('filter')($scope.usersArray, {
+                name: $scope.NameSearch
+                , surname1: $scope.Surname1Search
+            });
+        });
 
     /**
      * @name: connection
