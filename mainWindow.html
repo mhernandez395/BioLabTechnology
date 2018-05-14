@@ -39,6 +39,9 @@
     <h1>Worked!!</h1>
     <div ng-show="showForm==0" id="mainMenuMolecules">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> <a class="text-lg-right" id="logout" ng-click="sessionCtrl.logOut();showForm=0">Log out</a> </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> <a class="text-lg-right" id="user" ng-click="showForm=3">User managament</a>
+        </div>
     </div>
     <!--
     <header> <img class="" src="images/header.jpg" id="logo" /> </header>
@@ -51,11 +54,11 @@
     <div ng-controller="ApplicationController as appCtrl" ng-show="showForm==1">
         <application-entry-form></application-entry-form>
     </div>
-    <div ng-controller="ReviewController as reviewCtrl" ng-show="showForm==2" ng-init="reviewCtrl.loadData()">
-        <review-mod-form></review-mod-form>
-    </div>
     -->
-
+    <div ng-controller="UserController as userCtrl" ng-show="showForm==3" ng-init="userCtrl.loadUsers()">  
+        <user-managament></user-managament>
+    </div>
+    
 </body>
 
 </html>

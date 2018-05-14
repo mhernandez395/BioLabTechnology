@@ -7,9 +7,12 @@
  */
 //Angular code
 (function() {
-  angular.module('infoTechApp').controller("UserController", ['$http', '$scope', '$window', '$cookies', 'accessService', 'userConnected', function($http, $scope, $window, $cookies, accessService, userConnected) {
+  angular.module('infoTechApp').controller("UserController", ['$http', '$scope', '$window', '$cookies', 'accessService', 'userConnected', '$filter', function($http, $scope, $window, $cookies, accessService, userConnected,$filter) {
     //scope variables
     $scope.userOption = 0;
+     //Pagination variables
+        $scope.pageSize = 4;
+        $scope.currentPage = 1;
     //$scope.userType;
     $scope.user = new User();
     if (typeof(Storage) == "undefined") {
@@ -24,6 +27,7 @@
     }
 
     //$scope.userType = $scope.user.getUserType();
+    $scope.usersArray = new Array();
     $scope.passwordValid = true;
     $scope.nickValid = true;
     $scope.userImage;
@@ -123,6 +127,66 @@
     };
 
     /**
+        * @name: loadUsers
+        * @author: Jose Gimenez & Hector Garcia
+        * @version: 3.1
+        * @description: load all users existing in a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+        this.loadUsers = function () {
+            //$scope.reviewsModArray = [];
+             $scope.usersArray = [];
+            $scope.filteredData = [];
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10040
+                , jsonData: JSON.stringify("")
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                  console.log(outPutData);
+                    for (var i = 0; i < outPutData[1].length; i++) {
+                        var user = new User();
+                        user.construct(outPutData[1][i].id, outPutData[1][i].name, outPutData[1][i].surname1, outPutData[1][i].nick, outPutData[1][i].password, outPutData[1][i].userType, outPutData[1][i].address, outPutData[1][i].city, outPutData[1][i].state, outPutData[1][i].telephone, outPutData[1][i].mail, outPutData[1][i].birthDate, outPutData[1][i].entryDate, outPutData[1][i].dropOutDate, outPutData[1][i].active, outPutData[1][i].image);
+                        $scope.usersArray.push(user);
+                    }
+                    /*
+                    for (var i = 0; i < $scope.reviewsArray.length; i++) {
+                        for (var j = 0; j < $scope.usersArray.length; j++) {
+                            if ($scope.usersArray[j].id == $scope.reviewsArray[i].userId) {
+                                $scope.reviewsArray[i].userId = $scope.usersArray[j];
+                                $scope.userEmails.push($scope.usersArray[i].mail);
+                            }
+                        }
+                    }*/
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
+        /**
+        * @name: modifyReview
+        * @author: Jose Gimenez & Hector Garcia
+        * @version: 3.1
+        * @description: allows to search in pagination usin reviews fields. It filter by opinion and rate.
+        * @date: 17/05/2017
+        * @return: none
+        */
+        $scope.$watch("NameSearch+Surname1Search", function () {
+            $scope.filteredData = $filter('filter')($scope.usersArray, {
+                name: $scope.NameSearch
+                , surname1: $scope.Surname1Search
+            });
+        });
+
+    /**
      * @name: connection
      * @author: Jose Gimenez & Hector Garcia
      * @version: 3.1
@@ -180,19 +244,36 @@
   }]);
 
   /**
-   * @name: userDataManagement
-   * @author: Jose Gimenez & Hector Garcia
+   * @name: userRegister
+   * @author: Jose Gimenez
    * @version: 3.1
    * @description: that directove controlls "user-data-management" template
    * @date: 17/05/2017
    * @return none
    */
-  angular.module('infoTechApp').directive("userDataManagement", function() {
+  angular.module('infoTechApp').directive("userRegister", function() {
     return {
       restrict: 'E',
-      templateUrl: "view/templates/user-data-management.html",
+      templateUrl: "view/templates/user-register.html",
       controller: function() {},
-      controllerAs: 'userDataManagement'
+      controllerAs: 'userRegister'
+    };
+  });
+
+  /**
+   * @name: userManagament
+   * @author: Marvin Hernandez
+   * @version: 3.1
+   * @description: that directove controlls "user-management" template
+   * @date: 17/05/2017
+   * @return none
+   */
+  angular.module('infoTechApp').directive("userManagament", function() {
+    return {
+      restrict: 'E',
+      templateUrl: "view/templates/user-managament.html",
+      controller: function() {},
+      controllerAs: 'userManagament'
     };
   });
 
