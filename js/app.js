@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 (function(){
-  var infoTechApp = angular.module('infoTechApp', ['ng-currency', 'ui.bootstrap', 'ngCookies', 'angularUtils.directives.dirPagination']);
+  var infoTechApp = angular.module('infoTechApp', ['ng-currency', 'ui.bootstrap', 'ngCookies', 'angularUtils.directives.dirPagination','datatables']);
 
   infoTechApp.factory('userConnected', function(){
       // I know this doesn't work, but what will?

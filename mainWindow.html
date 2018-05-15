@@ -8,12 +8,18 @@
     <title>InfoTech</title>
     <link rel="shortcut icon" href="images/logo.jpg" />
     <!-- css-->
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/dataTables.bootstrap4.min.css">
+
     <link rel="stylesheet" type="text/css" href="vendors/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+
     <!-- jQuery-->
     <script src="vendors/jquery/js/jQuery.js" type="text/javascript" xml:space="preserve"></script>
+
     <!-- jQuery Cookies management-->
     <script src="vendors/jquery/jquery-cookie/jquery.cookie.js" type="text/javascript" xml:space="preserve"></script>
+
     <!-- Angular-->
     <script src="vendors/angular/js/angular.min.js" type="text/javascript" xml:space="preserve"></script>
     <script src="vendors/angular/js/angular-file-upload.js" type="text/javascript" xml:space="preserve"></script>
@@ -22,17 +28,24 @@
     <script src="vendors/angular/js/angular-cookies.js" type="text/javascript" xml:space="preserve"></script>
     <script src="vendors/angular/js/dirPagination.js" type="text/javascript" xml:space="preserve"></script>
     <script src="vendors/bootstrap/js/ui-bootstrap-tpls-2.3.1.js" type="text/javascript" xml:space="preserve"></script>
+    
     <!-- Own code-->
+    <script src="vendors/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="vendors/angular-datatables.min.js"></script>
+
     <!-- Model-->
     <script src="js/model/Aplication.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/model/Review.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/model/User.js" type="text/javascript" xml:space="preserve"></script>
+
     <!-- Controllers-->
     <script src="js/app.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/controller/SessionController.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/controller/UserController.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/controller/ApplicationController.js" type="text/javascript" xml:space="preserve"></script>
     <script src="js/controller/ReviewController.js" type="text/javascript" xml:space="preserve"></script>
+
+
 </head>
 
 <body ng-show="sessionOpened" class="container" ng-controller="SessionController as sessionCtrl" ng-init="userAction=1;sessionCtrl.sessionControl()">

@@ -136,6 +136,7 @@
         */
         this.loadUsers = function () {
             //$scope.reviewsModArray = [];
+
              $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
@@ -169,6 +170,7 @@
                         alert("There has been an error in the server, try later");
                     }
                 }
+                
             });
         };
         /**

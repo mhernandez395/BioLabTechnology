@@ -1,5 +1,40 @@
-<h1>user managament</h1>
-<!DOCTYPE html>
+
+
+<table id="example" datatable="ng" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+            	<th>ID</th>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="value in usersArray">
+                    <td>{{ value.id }}</td>
+                    <td>{{ value.name }}</td>
+                    <td>{{ value.mail }}</td>
+                    <td>
+                        <span ng-click="editUser(value)" style="cursor: pointer; font-weight:500; font-size:15px" class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit</span> &nbsp;&nbsp; | &nbsp;&nbsp;
+                        <span ng-click="deleteUser(value)" style=" cursor: pointer; font-weight:500; font-size:15px" class="btn btn-danger">Delete</span>
+                    </td>
+            </tr>
+        </tbody>
+</table>
+
+
+<!--
+<table ng-table="vm.tableParams" class="table" show-filter="true">
+    <tr ng-repeat="user in usersArray">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}</td>
+        <td title="'Mail'" filter="{ mail: 'text'}" sortable="'mail'">
+            {{user.mail}}</td>
+    </tr>
+</table>
+-->
+
+<!--
 <form name="modUsersForm" novalidate>
     <div>
         <table class="table table-bordered" ng-disabled="modUsersForm.$invalid">
@@ -41,4 +76,4 @@
         </div>
     </div>
     <button type="button" class="btn btn-info" ng-click="userAction=1;$parent.showForm=0">Back</button>
-</form>
+</form>-->
