@@ -135,7 +135,9 @@
         * @return: none
         */
         this.loadUsers = function () {
+
             //$scope.usersModArray = [];
+
              $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
@@ -151,15 +153,6 @@
                         user.construct(outPutData[1][i].id, outPutData[1][i].name, outPutData[1][i].surname1, outPutData[1][i].nick, outPutData[1][i].password, outPutData[1][i].userType, outPutData[1][i].address, outPutData[1][i].city, outPutData[1][i].state, outPutData[1][i].telephone, outPutData[1][i].mail, outPutData[1][i].birthDate, outPutData[1][i].entryDate, outPutData[1][i].dropOutDate, outPutData[1][i].active, outPutData[1][i].image);
                         $scope.usersArray.push(user);
                     }
-                    /*
-                    for (var i = 0; i < $scope.usersArray.length; i++) {
-                        for (var j = 0; j < $scope.usersArray.length; j++) {
-                            if ($scope.usersArray[j].id == $scope.usersArray[i].userId) {
-                                $scope.usersArray[i].userId = $scope.usersArray[j];
-                                $scope.userEmails.push($scope.usersArray[i].mail);
-                            }
-                        }
-                    }*/
                 }
                 else {
                     if (angular.isArray(outPutData[1])) {
@@ -169,8 +162,10 @@
                         alert("There has been an error in the server, try later");
                     }
                 }
+                
             });
         };
+
 
      /**
         * @name: modifyUser

@@ -7,11 +7,18 @@
   <title>InfoTech</title>
   <link rel="shortcut icon" href="images/logo.jpg"/>
 
-  <!-- css-->
+  <!-- =====css==========-->
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/v/bs4-4.0.0/dt-1.10.16/datatables.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  
+
   <link rel="stylesheet" type="text/css" href="vendors/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <!-- jQuery-->
+  
+
+  <!-- =========jQuery========-->
   <script src="vendors/jquery/js/jQuery.js" type="text/javascript" xml:space="preserve"></script>
+ 
 
   <!-- jQuery Cookies management-->
   <script src="vendors/jquery/jquery-cookie/jquery.cookie.js" type="text/javascript" xml:space="preserve"></script>
@@ -24,14 +31,25 @@
   <script src="vendors/angular/js/angular-cookies.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/angular/js/dirPagination.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/bootstrap/js/ui-bootstrap-tpls-2.3.1.js" type="text/javascript" xml:space="preserve"></script>
+  
+  <script src="vendors/jquery/jquery-1.12.4.js" type="text/javascript" ></script>
+  
+  
 
-  <!-- Own code-->
+  <!-- Pagination-->
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="vendors/angular-datatables.min.js"></script>
+ 
+
+
   <!-- Model-->
   <script src="js/model/User.js" type="text/javascript" xml:space="preserve"></script>
   <!-- Controllers-->
   <script src="js/app.js" type="text/javascript" xml:space="preserve"></script>
   <script src="js/controller/SessionController.js" type="text/javascript" xml:space="preserve"></script>
   <script src="js/controller/UserController.js" type="text/javascript" xml:space="preserve"></script>
+
+
 </head>
 
 <body class="container" ng-controller="SessionController as sessionCtrl" ng-init="sessionCtrl.sessionControl()">

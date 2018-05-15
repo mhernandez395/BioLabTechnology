@@ -1,44 +1,47 @@
-<h1>user managament</h1>
-<!DOCTYPE html>
-<form name="modUsersForm" novalidate>
-    <div>
-        <table class="table table-bordered" ng-disabled="modUsersForm.$invalid">
+
+<form name="modReviewsForm" novalidate>
+<table id="example" datatable="ng" class="table table-striped table-bordered" style="width:100%">
+        <thead>
             <tr>
-                <th>Rate</th>
-                <th>Opinion</th>
-                <th>users per page</th>
+            	<th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Mail</th>
+                <th>Nick</th>
+
+                <th></th>
             </tr>
-            <tr>
-                <td>
-                    <input type="text" ng-model="RateSearch" ng-disabled="modUsersForm.$invalid" />
-                </td>
-                <td>
-                    <input type="text" ng-model="OpinionSearch" ng-disabled="modUsersForm.$invalid" />
-                </td>
-                <td>
-                    <input type="number" min="1" max="100" class="form-control" ng-model="pageSize" />
-                </td>
+        </thead>
+        <tbody>
+            <tr ng-repeat="value in usersArray">
+                    <td>
+                        {{ value.id }}
+                    </td>
+                    <td>
+                        <input type="text" id="userName{{$index}}" ng-model="value.name" required />
+                        <div style="display: none;">{{ value.name }}</div>
+                    </td>
+                    <td>
+                        <input type="text" id="userSurname{{$index}}" ng-model="value.surname1" required />
+                        <div style="display: none;">{{ value.surname1 }}</div>
+                    </td>
+                    <td>
+                        <input type="text" id="userMail{{$index}}" ng-model="value.mail" required />
+                        <div style="display: none;">{{ value.mail }}</div>
+                    </td>
+                    <td>
+                        <input type="text" id="userNick{{$index}}" ng-model="value.nick" required />
+                        <div style="display: none;">{{ value.nick }}</div>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="userCtrl.modifyUser($index)" ng-disabled="modReviewsForm.$invalid"> Modify </button>
+                        <button type="button" class="btn btn-danger" ng-click="userCtrl.removeUser(user)" ng-disabled="modReviewsForm.$invalid"> X </button>
+                    </td>
             </tr>
-        </table>
-    </div>
-    <h1>users found:</h1>
-    <table class="table table-striped">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr dir-paginate="value in usersArray | itemsPerPage: 5">
-                    <td>{{ value.name }}</td>
-                </tr>
-            </tbody>
-        </table>
-    <div ng-show="modUsersForm.$valid">
-        <div class="text-left" boundary-links="true">
-            <dir-pagination-controls boundary-links="true" template-url="view/templates/dir-pagination-controls.html"></dir-pagination-controls>
-        </div>
-    </div>
+        </tbody>
+</table>
     <button type="button" class="btn btn-info" ng-click="userAction=1;$parent.showForm=0">Back</button>
 </form>
+
+
