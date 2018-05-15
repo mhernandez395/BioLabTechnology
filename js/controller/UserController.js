@@ -1,6 +1,6 @@
 /**
  * @name: User controller
- * @author: Jose Gimenez & Hector Garcia
+ * @author: Jose Gimenez 
  * @version: 3.1
  * @description: controll all user functions
  * @date: 17/05/2017
@@ -52,7 +52,7 @@
     //Methods
     /**
      * @name: userManagement
-     * @author: Jose Gimenez & Hector Garcia
+     * @author: Jose Gimenez 
      * @version: 3.1
      * @description: manage users from a data base. It comunicates with php using ajax
      * 							Actually it only allow to entry a new user
@@ -128,14 +128,14 @@
 
     /**
         * @name: loadUsers
-        * @author: Jose Gimenez & Hector Garcia
+        * @author: Jose Gimenez
         * @version: 3.1
         * @description: load all users existing in a data base. It comunicates with php using ajax
         * @date: 17/05/2017
         * @return: none
         */
         this.loadUsers = function () {
-            //$scope.reviewsModArray = [];
+            //$scope.usersModArray = [];
              $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
@@ -152,10 +152,10 @@
                         $scope.usersArray.push(user);
                     }
                     /*
-                    for (var i = 0; i < $scope.reviewsArray.length; i++) {
+                    for (var i = 0; i < $scope.usersArray.length; i++) {
                         for (var j = 0; j < $scope.usersArray.length; j++) {
-                            if ($scope.usersArray[j].id == $scope.reviewsArray[i].userId) {
-                                $scope.reviewsArray[i].userId = $scope.usersArray[j];
+                            if ($scope.usersArray[j].id == $scope.usersArray[i].userId) {
+                                $scope.usersArray[i].userId = $scope.usersArray[j];
                                 $scope.userEmails.push($scope.usersArray[i].mail);
                             }
                         }
@@ -171,24 +171,80 @@
                 }
             });
         };
-        /**
-        * @name: modifyReview
-        * @author: Jose Gimenez & Hector Garcia
+
+     /**
+        * @name: modifyUser
+        * @author: Jose Gimenez 
         * @version: 3.1
-        * @description: allows to search in pagination usin reviews fields. It filter by opinion and rate.
+        * @description: modify a user existing ni a data base. It comunicates with php using ajax
         * @date: 17/05/2017
         * @return: none
         */
-        $scope.$watch("NameSearch+Surname1Search", function () {
-            $scope.filteredData = $filter('filter')($scope.usersArray, {
-                name: $scope.NameSearch
-                , surname1: $scope.Surname1Search
-            });
-        });
+        this.modifyUser = function (index) {
 
+            $scope.filteredData[index].setUserId($scope.filteredData[index].userId.getId());
+
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10020
+                , jsonData: JSON.stringify([angular.copy($scope.filteredData[index])])
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    alert("User modified correctly");
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
+
+            /**
+        * @name: removeUser
+        * @author: Jose Gimenez 
+        * @version: 3.1
+        * @description: remove a user existing ni a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+        this.removeUser = function (user) {
+            var userFound = new User();
+            var usersArray = [];
+            $scope.usersModArray = angular.copy($scope.usersModArray);
+            $scope.filteredData = angular.copy($scope.filteredData);
+
+            user = angular.copy(user);
+            usersArray.push(user);
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10060
+                , jsonData: JSON.stringify(usersArray)
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    
+                    $scope.usersModArray.splice($scope.usersModArray.indexOf(user), 1);
+                    $scope.filteredData.splice($scope.filteredData.indexOf(user), 1);
+                    alert("User deleted correctly");
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
     /**
      * @name: connection
-     * @author: Jose Gimenez & Hector Garcia
+     * @author: Jose Gimenez 
      * @version: 3.1
      * @description: it allows to establishes a session variable to controll session user
      * @date: 17/05/2017
@@ -213,9 +269,9 @@
           }
         } else {
           if (angular.isArray(outPutData[1])) {
-            alert(outPutData[1]);
+                alert(outPutData[1]);
           } else {
-            alert("There has been an error in the server, try later");
+                alert("There has been an error in the server, try later");
           }
         }
       });
@@ -223,7 +279,7 @@
 
     /**
      * @name: setFile
-     * @author: Jose Gimenez & Hector Garcia
+     * @author: Jose Gimenez 
      * @version: 3.1
      * @description: it allows to load a new file into user file variable.
      * @date: 17/05/2017
