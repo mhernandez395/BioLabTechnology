@@ -90,13 +90,12 @@
         <application-entry-form></application-entry-form>
     </div>
     -->
-    <div ng-controller="UserController as userCtrl" class="container pt-5" ng-init="userCtrl.loadUsers()">
-      <user-managament ng-show="showForm==3" ></user-managament>
-
-        <user-register ng-if="userOption==1"></user-register>
-
+    <div ng-controller="UserController as userCtrl" class="container pt-5" ng-show="showForm==3" ng-init="userCtrl.loadUsers()">
+      <user-managament></user-managament>
     </div>
-
+    <div ng-show="showForm==2">
+      <user-register></user-register>
+    </div>
 
 
 </body>
