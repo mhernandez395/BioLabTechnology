@@ -44,6 +44,7 @@
   <script src="js/controller/UserController.js" type="text/javascript" xml:space="preserve"></script>
   <script src="js/controller/ApplicationController.js" type="text/javascript" xml:space="preserve"></script>
   <script src="js/controller/ReviewController.js" type="text/javascript" xml:space="preserve"></script>
+  <script src="js/controller/StatisticsController.js" type="text/javascript" xml:space="preserve"></script>
 
 
 </head>
@@ -68,6 +69,7 @@
         </li>
       </ul>
     </div>
+
   </nav>
 
   <!--
@@ -95,6 +97,9 @@
     </div>
     <div ng-show="showForm==2">
       <user-register></user-register>
+    </div>
+    <div ng-controller="StatisticsController as statisticsCtrl">
+      <a class="btn btn-default btn-primary col-xs-12 col-sm-6 col-md-6 col-lg-6"  href="#" ng-click="statisticsCtrl.generateBoxPlotMolecularWeight()">Generate BoxPlot Molecular weight</a>
     </div>
 
 
