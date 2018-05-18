@@ -42,6 +42,10 @@
 							$outPutData = $reviewController->doAction();
 					}
 					break;
+			case 4:
+					$moleculeController = new MoleculeController( $_REQUEST['action'], $_REQUEST['jsonData'] );
+					$outPutData = $moleculeController->doAction();
+					break;
 			default:
 				$errors = array();
 				$outPutData[0]=false;
