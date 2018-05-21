@@ -12,7 +12,11 @@ USE biolab;
 --
 
 DROP TABLE IF EXISTS `users`;
+<<<<<<< HEAD
+CREATE TABLE IF NOT EXISTS `users` (
+=======
 CREATE TABLE `users` (
+>>>>>>> marvin
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   `surname1` varchar(150) NOT NULL,
@@ -40,6 +44,8 @@ INSERT INTO `users` (`id`, `name`, `surname1`, `nick`, `password`, `userType`,`a
 (null, 'Jhon1', 'Peterson1', 'user2', '123456', 1,'Address2', 'Barcelona', 'Spain', 933333333, 'r2@r.com', '1975-01-01', '2014-01-01', '0000-00-00', true, 'images/usersImages/user2.jpeg'),
 (null, 'Jhon2', 'Peterson2', 'user3', '123456', 1,'Address3', 'Barcelona', 'Spain', 933333333, 'r3@r.com', '1975-01-01', '2014-01-01', '0000-00-00', true, 'images/usersImages/user3.jpeg');
 
+<<<<<<< HEAD
+=======
 DROP TABLE IF EXISTS `molecules`;
 CREATE TABLE `molecules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -61,6 +67,7 @@ INSERT INTO `molecules` (`id`, `accessionNumber`, `moleculeFormula`,`moleculeWei
 (1, 'C8CN33', 'ACH2CHN3OCHN', 12.36, 'MoleculeSimilarity11', 'MoleculeSimilarity21'),
 (2, 'P20231','CN3H2OHN3', 43.57,'MoleculeSimilarity12', 'MoleculeSimilarity22'),
 (3, 'C8CNP3','H2O3NCHN3O2', 105.23,'MoleculeSimilarity13', 'MoleculeSimilarity23');
+>>>>>>> marvin
 
 CREATE USER IF NOT EXISTS 'biolab'@'localhost' IDENTIFIED BY 'biolab';
 GRANT ALL ON biolab.* TO 'biolab'@'localhost';

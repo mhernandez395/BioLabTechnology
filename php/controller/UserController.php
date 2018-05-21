@@ -55,7 +55,15 @@ class UserController implements ControllerInterface {
             case 10050:
 			$outPutData = $this->logout();
 			break;
+<<<<<<< HEAD
 
+=======
+			case 10060:
+				if (isset($_SESSION['connectedUser']))	{
+					$outPutData = $this->deleteUser();
+				}
+				break;
+>>>>>>> marvin
 			default:
 				$errors = array();
 				$outPutData[0]=false;
@@ -87,11 +95,30 @@ class UserController implements ControllerInterface {
 		$outPutData[]= true;
 		foreach($usersArray as $userObj)	{
 		    $user = new userClass();
+<<<<<<< HEAD
 			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->address, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate, $userObj->dropOutDate, $userObj->active, $userObj->image);
+=======
+			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->userType, $userObj->address, $userObj->city, $userObj->state, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate,$userObj->dropOutDate, $userObj->active, $userObj->image);
+>>>>>>> marvin
 		    UserADO::update($user);
 		}
 		return $outPutData;
 	}
+<<<<<<< HEAD
+=======
+	private function deleteUser()	{
+		//Films modification
+		$usersArray = json_decode(stripslashes($this->getJsonData()));
+		$outPutData = array();
+		$outPutData[]= true;
+		foreach($usersArray as $userObj)	{
+			$user = new Application();
+			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->userType, $userObj->address, $userObj->city, $userObj->state, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate,$userObj->dropOutDate, $userObj->active, $userObj->image);
+			UserADO::delete($user);
+		}
+		return $outPutData;
+	}
+>>>>>>> marvin
 
 	private function userConnection()	{
 		$userObj = json_decode(stripslashes($this->getJsonData()));

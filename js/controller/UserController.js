@@ -1,6 +1,10 @@
 /**
  * @name: User controller
+<<<<<<< HEAD
  * @author: Jose Gimenez & Hector Garcia
+=======
+ * @author: Jose Gimenez
+>>>>>>> marvin
  * @version: 3.1
  * @description: controll all user functions
  * @date: 17/05/2017
@@ -33,6 +37,10 @@
     $scope.userImage;
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
+<<<<<<< HEAD
+=======
+    $scope.newUser = new User();
+>>>>>>> marvin
     $scope.dateOptions = {
       dateDisabled: "",
       formatYear: 'yyyy',
@@ -52,7 +60,11 @@
     //Methods
     /**
      * @name: userManagement
+<<<<<<< HEAD
      * @author: Jose Gimenez & Hector Garcia
+=======
+     * @author: Jose Gimenez
+>>>>>>> marvin
      * @version: 3.1
      * @description: manage users from a data base. It comunicates with php using ajax
      * 							Actually it only allow to entry a new user
@@ -63,6 +75,10 @@
       switch ($scope.userOption) {
         //User entry: index.html
         case 1:
+<<<<<<< HEAD
+=======
+
+>>>>>>> marvin
           var imageFile = $("#imageUser")[0].files[0];
 
           var imagesArrayToSend = new FormData();
@@ -71,7 +87,11 @@
 
           $http({
             method: 'POST',
+<<<<<<< HEAD
             url: 'php/controller/MainController.php?controllerType=2&action=10010&jsonData=' + $scope.user.getNick(),
+=======
+            url: 'php/controller/MainController.php?controllerType=2&action=10010&jsonData=' + $scope.newUser.getNick(),
+>>>>>>> marvin
             headers: {
               'Content-Type': undefined
             },
@@ -83,15 +103,25 @@
             if (outPutData[0] === true) {
               //File uploaded
               //$scope.user.setId(null);
+<<<<<<< HEAD
               $scope.user.setActive(1);
               $scope.user.setImage(outPutData[1][0]);
               $scope.user = angular.copy($scope.user);
+=======
+              $scope.newUser.setActive(1);
+              $scope.newUser.setImage(outPutData[1][0]);
+              $scope.newUser = angular.copy($scope.newUser);
+>>>>>>> marvin
 
               //Server conenction to verify user's data
               var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
                 controllerType: 0,
                 action: 10010,
+<<<<<<< HEAD
                 jsonData: JSON.stringify($scope.user)
+=======
+                jsonData: JSON.stringify($scope.newUser)
+>>>>>>> marvin
               });
 
               promise.then(function(outPutData) {
@@ -128,14 +158,24 @@
 
     /**
         * @name: loadUsers
+<<<<<<< HEAD
         * @author: Jose Gimenez & Hector Garcia
+=======
+        * @author: Jose Gimenez
+>>>>>>> marvin
         * @version: 3.1
         * @description: load all users existing in a data base. It comunicates with php using ajax
         * @date: 17/05/2017
         * @return: none
         */
         this.loadUsers = function () {
+<<<<<<< HEAD
             //$scope.reviewsModArray = [];
+=======
+
+            //$scope.usersModArray = [];
+
+>>>>>>> marvin
              $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
@@ -151,6 +191,7 @@
                         user.construct(outPutData[1][i].id, outPutData[1][i].name, outPutData[1][i].surname1, outPutData[1][i].nick, outPutData[1][i].password, outPutData[1][i].userType, outPutData[1][i].address, outPutData[1][i].city, outPutData[1][i].state, outPutData[1][i].telephone, outPutData[1][i].mail, outPutData[1][i].birthDate, outPutData[1][i].entryDate, outPutData[1][i].dropOutDate, outPutData[1][i].active, outPutData[1][i].image);
                         $scope.usersArray.push(user);
                     }
+<<<<<<< HEAD
                     /*
                     for (var i = 0; i < $scope.reviewsArray.length; i++) {
                         for (var j = 0; j < $scope.usersArray.length; j++) {
@@ -160,6 +201,8 @@
                             }
                         }
                     }*/
+=======
+>>>>>>> marvin
                 }
                 else {
                     if (angular.isArray(outPutData[1])) {
@@ -169,6 +212,7 @@
                         alert("There has been an error in the server, try later");
                     }
                 }
+<<<<<<< HEAD
             });
         };
         /**
@@ -189,6 +233,92 @@
     /**
      * @name: connection
      * @author: Jose Gimenez & Hector Garcia
+=======
+
+            });
+        };
+
+
+     /**
+        * @name: modifyUser
+        * @author: Jose Gimenez
+        * @version: 3.1
+        * @description: modify a user existing ni a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+        this.modifyUser = function (index) {
+
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10020
+                , jsonData: JSON.stringify([angular.copy($scope.usersArray[index])])
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    alert("User modified correctly");
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
+
+            /**
+        * @name: removeUser
+        * @author: Jose Gimenez - Marvin Hernandez
+        * @version: 3.1
+        * @description: remove a user existing ni a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+
+        this.removeUser = function (user) {
+            var userFound = new User();
+            var usersArray = [];
+
+            var rm = confirm("Delete user?");
+            if (rm == true) {
+              user = angular.copy(user);
+              usersArray.push(user);
+
+              console.log(usersArray);
+              var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                  controllerType: 0
+                  , action: 10060
+                  , jsonData: JSON.stringify(usersArray)
+              });
+
+              promise.then(function (outPutData) {
+                  if (outPutData[0] === true) {
+                      var pos = $scope.usersArray.indexOf(user);
+                      $scope.usersArray.splice(pos, 1);
+                      alert("User deleted correctly");
+                  }
+                  else {
+                      if (angular.isArray(outPutData[1])) {
+                          alert(outPutData[1]);
+                      }
+                      else {
+                          alert("There has been an error in the server, try later");
+                      }
+                  }
+              });
+
+            } else {
+
+            }
+        };
+
+    /**
+     * @name: connection
+     * @author: Jose Gimenez
+>>>>>>> marvin
      * @version: 3.1
      * @description: it allows to establishes a session variable to controll session user
      * @date: 17/05/2017
@@ -213,9 +343,15 @@
           }
         } else {
           if (angular.isArray(outPutData[1])) {
+<<<<<<< HEAD
             alert(outPutData[1]);
           } else {
             alert("There has been an error in the server, try later");
+=======
+                alert(outPutData[1]);
+          } else {
+                alert("There has been an error in the server, try later");
+>>>>>>> marvin
           }
         }
       });
@@ -223,7 +359,11 @@
 
     /**
      * @name: setFile
+<<<<<<< HEAD
      * @author: Jose Gimenez & Hector Garcia
+=======
+     * @author: Jose Gimenez
+>>>>>>> marvin
      * @version: 3.1
      * @description: it allows to load a new file into user file variable.
      * @date: 17/05/2017
