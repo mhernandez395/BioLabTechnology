@@ -20,7 +20,7 @@ class Review implements EntityInterface{
     public function getFull_mwt() {return $this->full_mwt;}
     public function getMolecular_species() {return $this->molecular_species;}
 
-     public function getCanonical_smiles() { return $this->canonical_smiles; }
+    public function getCanonical_smiles() { return $this->canonical_smiles; }
     public function getMolecule_type() {return $this->molecule_type;}
     public function getPref_name() {return $this->molecule_type;}
     public function getStructure_type() {return $this->structure_type;}
@@ -75,7 +75,7 @@ class Review implements EntityInterface{
         $this->setFull_molformula($full_molformula);
         $this->setFull_mwt($full_mwt);
         $this->setMolecular_species($molecular_species);
-         $this->setCanonical_smiles($canonical_smiles);
+        $this->setCanonical_smiles($canonical_smiles);
         $this->setMolecule_type($molecule_type);
         $this->setPref_name($pref_name);
         $this->setStructure_type($structure_type);

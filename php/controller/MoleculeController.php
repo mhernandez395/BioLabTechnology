@@ -126,14 +126,26 @@ class MoleculeController implements ControllerInterface {
 		}
 		return $outPutData;
 	}
-	private function deleteMolecule() {
-		$outPutData[0]= true;
-		$outPutData[1] = file_get_contents('https://www.ebi.ac.uk/chembl/api/data/similarity/'.json_decode(stripslashes($this->getJsonData())).'/80');
-		
-		foreach($moleculesArray as $moleculeObj) {
-			$molecule = new Molecule();
-			$molecule->setAll($moleculeObj->id, $moleculeObj->userId, $moleculeObj->rate, $moleculeObj->opinion);
-			MoleculeADO::delete($molecule);
+
+
+	private function similarMolecule() {
+		$outPutData = array();
+		$moleculesArray = json_decode(MoleculeADO::findAllSimilary("CN1C(=O)C=C(c2cccc(Cl)c2)c3cc(ccc13)[C@@](N)(c4ccc(Cl)cc4)c5cncn5C")));
+	var_dump($moleculesArray);
+	exit();
+		if(count($moleculesArray) == 0)	{
+			$outPutData[]= false;
+			$errors = array();
+			$errors[]="No molecules found in the database";
+			$outPutData[] = $errors;
+		}
+		else {
+			$outPutData[]= true;
+			$moleculesToLocal = array();
+			foreach ($moleculesArray as $molecule) {
+				$moleculesToLocal[]=$molecule->getAll();
+			}
+			$outPutData[] = $moleculesToLocal;
 		}
 		return $outPutData;
 	}
