@@ -5,14 +5,10 @@ $(document).ready(function () {
 
 (function(){
 <<<<<<< HEAD
-<<<<<<< HEAD
   var infoTechApp = angular.module('infoTechApp', ['ng-currency', 'ui.bootstrap', 'ngCookies', 'angularUtils.directives.dirPagination']);
 =======
   var infoTechApp = angular.module('infoTechApp', ['ng-currency', 'ui.bootstrap', 'ngCookies', 'angularUtils.directives.dirPagination','datatables']);
 >>>>>>> marvin
-=======
-  var infoTechApp = angular.module('infoTechApp', ['ng-currency', 'ui.bootstrap', 'ngCookies', 'angularUtils.directives.dirPagination','datatables']);
->>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 
   infoTechApp.factory('userConnected', function(){
       // I know this doesn't work, but what will?

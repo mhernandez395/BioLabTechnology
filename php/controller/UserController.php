@@ -56,14 +56,20 @@ class UserController implements ControllerInterface {
 			$outPutData = $this->logout();
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 			case 10060:
 				if (isset($_SESSION['connectedUser']))	{
 					$outPutData = $this->deleteUser();
 				}
 				break;
+<<<<<<< HEAD
 >>>>>>> marvin
+=======
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 			default:
 				$errors = array();
 				$outPutData[0]=false;
@@ -96,16 +102,23 @@ class UserController implements ControllerInterface {
 		foreach($usersArray as $userObj)	{
 		    $user = new userClass();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->address, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate, $userObj->dropOutDate, $userObj->active, $userObj->image);
 =======
 			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->userType, $userObj->address, $userObj->city, $userObj->state, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate,$userObj->dropOutDate, $userObj->active, $userObj->image);
 >>>>>>> marvin
+=======
+			$user->setAll($userObj->id, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->userType, $userObj->address, $userObj->city, $userObj->state, $userObj->telephone, $userObj->mail, $userObj->birthDate, $userObj->entryDate,$userObj->dropOutDate, $userObj->active, $userObj->image);
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 		    UserADO::update($user);
 		}
 		return $outPutData;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 	private function deleteUser()	{
 		//Films modification
 		$usersArray = json_decode(stripslashes($this->getJsonData()));
@@ -118,7 +131,10 @@ class UserController implements ControllerInterface {
 		}
 		return $outPutData;
 	}
+<<<<<<< HEAD
 >>>>>>> marvin
+=======
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
 
 	private function userConnection()	{
 		$userObj = json_decode(stripslashes($this->getJsonData()));

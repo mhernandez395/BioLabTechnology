@@ -1,10 +1,14 @@
 /**
  * @name: User controller
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @author: Jose Gimenez & Hector Garcia
 =======
  * @author: Jose Gimenez
 >>>>>>> marvin
+=======
+ * @author: Jose Gimenez 
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
  * @version: 3.1
  * @description: controll all user functions
  * @date: 17/05/2017
@@ -61,10 +65,14 @@
     /**
      * @name: userManagement
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @author: Jose Gimenez & Hector Garcia
 =======
      * @author: Jose Gimenez
 >>>>>>> marvin
+=======
+     * @author: Jose Gimenez 
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
      * @version: 3.1
      * @description: manage users from a data base. It comunicates with php using ajax
      * 							Actually it only allow to entry a new user
@@ -159,10 +167,14 @@
     /**
         * @name: loadUsers
 <<<<<<< HEAD
+<<<<<<< HEAD
         * @author: Jose Gimenez & Hector Garcia
 =======
         * @author: Jose Gimenez
 >>>>>>> marvin
+=======
+        * @author: Jose Gimenez
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
         * @version: 3.1
         * @description: load all users existing in a data base. It comunicates with php using ajax
         * @date: 17/05/2017
@@ -170,12 +182,18 @@
         */
         this.loadUsers = function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
             //$scope.reviewsModArray = [];
 =======
 
             //$scope.usersModArray = [];
 
 >>>>>>> marvin
+=======
+
+            //$scope.usersModArray = [];
+
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
              $scope.usersArray = [];
             $scope.filteredData = [];
             var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
@@ -192,6 +210,7 @@
                         $scope.usersArray.push(user);
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                     /*
                     for (var i = 0; i < $scope.reviewsArray.length; i++) {
                         for (var j = 0; j < $scope.usersArray.length; j++) {
@@ -203,6 +222,8 @@
                     }*/
 =======
 >>>>>>> marvin
+=======
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
                 }
                 else {
                     if (angular.isArray(outPutData[1])) {
@@ -213,25 +234,87 @@
                     }
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
             });
         };
-        /**
-        * @name: modifyReview
-        * @author: Jose Gimenez & Hector Garcia
+
+
+     /**
+        * @name: modifyUser
+        * @author: Jose Gimenez 
         * @version: 3.1
-        * @description: allows to search in pagination usin reviews fields. It filter by opinion and rate.
+        * @description: modify a user existing ni a data base. It comunicates with php using ajax
         * @date: 17/05/2017
         * @return: none
         */
-        $scope.$watch("NameSearch+Surname1Search", function () {
-            $scope.filteredData = $filter('filter')($scope.usersArray, {
-                name: $scope.NameSearch
-                , surname1: $scope.Surname1Search
-            });
-        });
+        this.modifyUser = function (index) {
 
+            $scope.filteredData[index].setUserId($scope.filteredData[index].userId.getId());
+
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10020
+                , jsonData: JSON.stringify([angular.copy($scope.filteredData[index])])
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    alert("User modified correctly");
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
+
+            /**
+        * @name: removeUser
+        * @author: Jose Gimenez 
+        * @version: 3.1
+        * @description: remove a user existing ni a data base. It comunicates with php using ajax
+        * @date: 17/05/2017
+        * @return: none
+        */
+        this.removeUser = function (user) {
+            var userFound = new User();
+            var usersArray = [];
+            $scope.usersModArray = angular.copy($scope.usersModArray);
+            $scope.filteredData = angular.copy($scope.filteredData);
+
+            user = angular.copy(user);
+            usersArray.push(user);
+            var promise = accessService.getData("php/controller/MainController.php", true, "POST", {
+                controllerType: 0
+                , action: 10060
+                , jsonData: JSON.stringify(usersArray)
+            });
+            promise.then(function (outPutData) {
+                if (outPutData[0] === true) {
+                    
+                    $scope.usersModArray.splice($scope.usersModArray.indexOf(user), 1);
+                    $scope.filteredData.splice($scope.filteredData.indexOf(user), 1);
+                    alert("User deleted correctly");
+                }
+                else {
+                    if (angular.isArray(outPutData[1])) {
+                        alert(outPutData[1]);
+                    }
+                    else {
+                        alert("There has been an error in the server, try later");
+                    }
+                }
+            });
+        };
     /**
      * @name: connection
+<<<<<<< HEAD
      * @author: Jose Gimenez & Hector Garcia
 =======
 
@@ -319,6 +402,9 @@
      * @name: connection
      * @author: Jose Gimenez
 >>>>>>> marvin
+=======
+     * @author: Jose Gimenez 
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
      * @version: 3.1
      * @description: it allows to establishes a session variable to controll session user
      * @date: 17/05/2017
@@ -344,6 +430,7 @@
         } else {
           if (angular.isArray(outPutData[1])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             alert(outPutData[1]);
           } else {
             alert("There has been an error in the server, try later");
@@ -352,6 +439,11 @@
           } else {
                 alert("There has been an error in the server, try later");
 >>>>>>> marvin
+=======
+                alert(outPutData[1]);
+          } else {
+                alert("There has been an error in the server, try later");
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
           }
         }
       });
@@ -360,10 +452,14 @@
     /**
      * @name: setFile
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @author: Jose Gimenez & Hector Garcia
 =======
      * @author: Jose Gimenez
 >>>>>>> marvin
+=======
+     * @author: Jose Gimenez 
+>>>>>>> 053f8fb22f45ce020a592187697f832ef337dd2f
      * @version: 3.1
      * @description: it allows to load a new file into user file variable.
      * @date: 17/05/2017
