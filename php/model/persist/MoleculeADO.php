@@ -111,6 +111,15 @@ class MoleculeADO implements EntityInterfaceADO {
     $cons = "select * from `".MoleculeADO::$tableName."`";
     return MoleculeADO::findByQuery( $cons, [] );
   }
+  /**
+  * findAll()
+  * It runs a query and returns an object array
+  * @param none
+  * @return object with the query results
+  */
+  public static function findAllSimilary($smile) {
+    return file_get_contents('https://www.ebi.ac.uk/chembl/api/data/similarity/'.$smile.'/80');
+  }
 
 
 
