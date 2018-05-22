@@ -131,8 +131,7 @@ class MoleculeController implements ControllerInterface {
 	private function similarMolecule() {
 		$outPutData = array();
 		$moleculesArray = json_decode(MoleculeADO::findAllSimilary("CN1C(=O)C=C(c2cccc(Cl)c2)c3cc(ccc13)[C@@](N)(c4ccc(Cl)cc4)c5cncn5C")));
-	var_dump($moleculesArray);
-	exit();
+	
 		if(count($moleculesArray) == 0)	{
 			$outPutData[]= false;
 			$errors = array();
@@ -142,9 +141,11 @@ class MoleculeController implements ControllerInterface {
 		else {
 			$outPutData[]= true;
 			$moleculesToLocal = array();
+
 			foreach ($moleculesArray as $molecule) {
-				$moleculesToLocal[]=$molecule->getAll();
+				$moleculesToLocal[]=$molecule->setAll();
 			}
+
 			$outPutData[] = $moleculesToLocal;
 		}
 		return $outPutData;
