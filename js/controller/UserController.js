@@ -212,7 +212,7 @@
             var userFound = new User();
             var usersArray = [];
 
-            var rm = confirm("Delete user?");
+            var rm = confirm("sure you want to delete the user?");
             if (rm == true) {
               user = angular.copy(user);
               usersArray.push(user);

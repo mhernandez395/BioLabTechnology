@@ -9,29 +9,32 @@
   <link rel="shortcut icon" href="images/logo.jpg" />
 
   <!-- css-->
-  <link rel="stylesheet" type="text/css" href="vendors/bootstrap4/css/dataTables.bootstrap4.min.css">
+  
   <link rel="stylesheet" type="text/css" href="vendors/bootstrap4/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="vendors/fontawesome/css/fontawesome-all.css">
   <link rel="stylesheet" type="text/css" href="css/index.css" />
 
   <!-- jQuery-->
   <script src="vendors/jquery/js/jQuery.js" type="text/javascript" xml:space="preserve"></script>
+
+  <!-- Pagination-->
+  <script src="vendors/jquery.dataTables.min.js"></script>
+  
 
   <!-- jQuery Cookies management-->
   <script src="vendors/jquery/jquery-cookie/jquery.cookie.js" type="text/javascript" xml:space="preserve"></script>
 
   <!-- Angular-->
   <script src="vendors/angular/js/angular.min.js" type="text/javascript" xml:space="preserve"></script>
+  <script type="text/javascript" src="vendors/angular-datatables.min.js"></script>
   <script src="vendors/angular/js/angular-file-upload.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/angular/js/angular-i18n/angular-locale_es-es.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/angular/js/ng-currency.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/angular/js/angular-cookies.js" type="text/javascript" xml:space="preserve"></script>
-  <script src="vendors/angular/js/dirPagination.js" type="text/javascript" xml:space="preserve"></script>
   <script src="vendors/bootstrap4/js/ui-bootstrap-tpls-2.5.0.min.js" type="text/javascript" xml:space="preserve"></script>
-
-  <!-- Pagination-->
-  <script src="vendors/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="vendors/angular-datatables.min.js"></script>
+  <script src="vendors/bootstrap4/js/bootstrap.min.js" type="text/javascript" xml:space="preserve"></script>
+  <link rel="stylesheet" type="text/css" href="vendors/bootstrap4/css/dataTables.bootstrap4.min.css">
+ <link rel="stylesheet" type="text/css" href="vendors/dataTable/css/angular-datatables.css" />
 
   <!-- Model-->
   <script src="js/model/Aplication.js" type="text/javascript" xml:space="preserve"></script>
@@ -53,7 +56,7 @@
 </head>
 
 <body ng-show="sessionOpened"  ng-controller="SessionController as sessionCtrl" ng-init="userAction=1;sessionCtrl.sessionControl()">
-  <h1></h1>
+  
 
   <!-- ==== Main menu ===== -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -65,10 +68,10 @@
     <div class="collapse navbar-collapse" id="mainMenu">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" id="user" ng-click="showForm=3"><i class="fas fa-cogs"></i>User managament</a>
+          <a class="nav-link" id="user" ng-click="showForm=3"><i class="fas fa-cogs"></i> User managament</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="logout" ng-click="sessionCtrl.logOut();showForm=0"><i class="fas fa-sign-out-alt"></i>Log out</a>
+          <a class="nav-link" id="logout" ng-click="sessionCtrl.logOut();showForm=0"><i class="fas fa-sign-out-alt"></i> Log out</a>
         </li>
       </ul>
     </div>
@@ -95,15 +98,16 @@
         <application-entry-form></application-entry-form>
     </div>
     -->
+    
     <div ng-controller="UserController as userCtrl" class="container pt-5" ng-show="showForm==3" ng-init="userCtrl.loadUsers()">
       <user-managament></user-managament>
     </div>
     <div ng-show="showForm==2">
       <user-register></user-register>
     </div>
-    <div ng-controller="StatisticsController as statisticsCtrl">
+    <!--<div ng-controller="StatisticsController as statisticsCtrl">
       <a class="btn btn-default btn-primary col-xs-12 col-sm-6 col-md-6 col-lg-6"  href="#" ng-click="statisticsCtrl.generateBoxPlotMolecularWeight()">Generate BoxPlot Molecular weight</a>
-    </div>
+    </div>-->
 
 
 </body>

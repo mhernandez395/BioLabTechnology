@@ -18,6 +18,7 @@ function Molecule (){
 
 
   //Methods
+  
   //Constructor
   this.construct = function (molecule_chembl_id, full_molformula, full_mwt, molecular_species,canonical_smiles,molecule_type,pref_name,structure_type)  {
     this.molecule_chembl_id = molecule_chembl_id;
